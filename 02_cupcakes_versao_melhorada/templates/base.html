@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cardápio e pedidos de cupcakes artesanais.">
+  <title>{% block titulo %}Cupcakes{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+<header class="topo"><div class="topo-inner"><a class="logo" href="{{ url_for('cardapio.listar') }}">🧁 Cupcakes</a><a class="link-carrinho" href="{{ url_for('cardapio.ver_carrinho') }}">Carrinho</a></div></header>
+<main class="conteudo">
+  {% with mensagens = get_flashed_messages(with_categories=true) %}{% if mensagens %}<div class="mensagens" role="status">{% for categoria, mensagem in mensagens %}<p class="mensagem {{ categoria }}">{{ mensagem }}</p>{% endfor %}</div>{% endif %}{% endwith %}
+  {% block conteudo %}{% endblock %}
+</main>
+<footer class="rodape">Feito com carinho • Cupcakes</footer>
+</body>
+</html>

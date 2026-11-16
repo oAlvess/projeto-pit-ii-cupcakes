@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block titulo %}Cardápio - Cupcakes{% endblock %}
+
+{% block conteudo %}
+<h1>Cardápio</h1>
+
+<nav class="filtros" aria-label="Categorias">
+    <a href="{{ url_for('cardapio.listar') }}"
+       class="{{ 'ativo' if not categoria_atual }}">Todos</a>
+    {% for c in categorias %}
+    <a href="{{ url_for('cardapio.listar', categoria=c.id_categoria) }}"
+       class="{{ 'ativo' if categoria_atual == c.id_categoria }}">{{ c.nome }}</a>
+    {% endfor %}
+</nav>
+
+{% if produtos %}
+<section class="grade">
+    {% for p in produtos %}
+    <article class="cartao">
+        <span class="etiqueta">{{ p.categoria }}</span>
+        <h2>{{ p.nome }}</h2>
+        <p>{{ p.descricao }}</p>
+        <p class="preco">{{ p.preco | brl }}</p>
+        {% if p.estoque == 0 %}
+        <p class="esgotado">Esgotado</p>
+        {% endif %}
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p class="aviso">Nenhum cupcake encontrado nesta categoria.</p>
+{% endif %}
+{% endblock %}

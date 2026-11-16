@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block titulo %}Pedido confirmado - Cupcakes{% endblock %}{% block conteudo %}
+<section class="confirmacao"><p class="sobretitulo">PEDIDO REGISTRADO</p><h1>Obrigado pela compra!</h1><p>Seu pedido de demonstração foi registrado com sucesso.</p><p><strong>Número do pedido:</strong> #{{ id_pedido }}</p><p><strong>Total:</strong> {{ total | brl }}</p><a class="botao" href="{{ url_for('cardapio.listar') }}">Voltar ao cardápio</a></section>{% endblock %}
